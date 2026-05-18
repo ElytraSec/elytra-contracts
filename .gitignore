@@ -1,0 +1,9 @@
+out/
+cache/
+broadcast/
+lib/
+.env
+.env.*
+*.log
+.DS_Store
+foundry.lock

@@ -1,0 +1,30 @@
+[profile.default]
+src              = "src"
+out              = "out"
+test             = "test"
+libs             = ["lib"]
+solc_version     = "0.8.24"
+optimizer        = true
+optimizer_runs   = 200
+via_ir           = false
+gas_reports      = ["ElytraOracle"]
+fuzz             = { runs = 256 }
+remappings       = [
+  "forge-std/=lib/forge-std/src/",
+]
+
+[fmt]
+line_length      = 100
+tab_width        = 4
+bracket_spacing  = false
+int_types        = "long"
+quote_style      = "double"
+number_underscore = "thousands"
+
+[rpc_endpoints]
+base         = "${BASE_RPC_URL}"
+base_sepolia = "${BASE_SEPOLIA_RPC_URL}"
+
+[etherscan]
+base         = { key = "${ETHERSCAN_API_KEY}", chain = "base", url = "https://api.etherscan.io/v2/api?chainid=8453" }
+base_sepolia = { key = "${ETHERSCAN_API_KEY}", chain = "base-sepolia", url = "https://api.etherscan.io/v2/api?chainid=84532" }
