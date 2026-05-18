@@ -7,6 +7,25 @@ Currently contains:
 - **`ElytraOracle.sol`** — onchain index of the latest Elytra security score
   for any address. A convenience lookup that points to the canonical EAS
   attestation backing the score.
+- **`ElytraGateRegistry.sol`** — reference consumer of the oracle. Wraps
+  it with an immutable policy (minScore, reviewCeiling, maxStaleness) and
+  exposes strict + lenient gates (`isAllowed`, `isNotBlocked`,
+  `requireAllowed`, `requireNotBlocked`). Drop-in one-liner for vaults,
+  routers, allowlists.
+- **`ElytraGateLib.sol`** — pure library version of the gate (no state,
+  cheaper to embed).
+- **`ElytraGateHook.sol`** — reference Uniswap v4 hook using `ElytraGateLib`.
+  Uses inline minimal shims so it compiles without v4-core; replace shims
+  with real `v4-core` imports for a production-ready hook.
+
+## Live on Base mainnet
+
+| Contract | Address |
+|---|---|
+| `ElytraOracle` | [`0x7823Ef5aD87F4851eD4b7E39ef0E227509901a7b`](https://basescan.org/address/0x7823Ef5aD87F4851eD4b7E39ef0E227509901a7b) |
+| `ElytraGateRegistry` | [`0x6243d745e8cd212146176313ABB052C4541553f2`](https://basescan.org/address/0x6243d745e8cd212146176313abb052c4541553f2) |
+
+Registry policy: `minScore=55, reviewCeiling=80, maxStaleness=7 days`.
 
 ## What `ElytraOracle` IS
 
